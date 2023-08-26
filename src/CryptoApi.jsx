@@ -21,21 +21,22 @@ const CryptoApi = () => {
     };
     getData();
   }, []);
-  const coinName = crypto?.data?.coins[0]?.name;
-  const coinSymbol = crypto?.data?.coins[0]?.symbol;
-  const coinPrice = crypto?.data?.coins[0]?.price;
-  const cryptoCap = crypto?.data?.coins[0]?.marketCap;
-  const volumeDay = crypto?.data?.coins[0]["24hVolume"];
+  const coinName1 = crypto?.data?.coins[0]?.name;
+  const coinSymbol1 = crypto?.data?.coins[0]?.symbol;
+  const coinPrice1 = crypto?.data?.coins[0]?.price;
+  const cryptoCap1 = crypto?.data?.coins[0]?.marketCap;
+  const volumeDay1 = crypto?.data?.coins[0]["24hVolume"];
+
   return (
     <div>
-      <h1>{error}</h1>
-      <h1>{coinName}</h1>
-      <h1>{coinSymbol}</h1>
-      <h1>${Math.floor(coinPrice).toLocaleString()}</h1>
-      <h1>
-        <h1>${Math.floor(cryptoCap).toLocaleString()}</h1>
-      </h1>
-      <h1>{Math.floor(volumeDay).toLocaleString()}</h1>
+      <div className="p-5">
+        <h1>{error}</h1>
+        <h1>{coinName1}</h1>
+        <h1>{coinSymbol1}</h1>
+        <h1>${Math.floor(coinPrice1).toLocaleString()}</h1>
+        <h1>${Math.floor(cryptoCap1).toLocaleString()}</h1>
+        <h1>Volume {Math.floor(volumeDay1).toLocaleString()}</h1>
+      </div>
     </div>
   );
 };
