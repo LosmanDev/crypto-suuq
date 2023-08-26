@@ -21,24 +21,8 @@ const CryptoApi = () => {
     };
     getData();
   }, []);
-  const coinName1 = crypto?.data?.coins[0]?.name;
-  const coinSymbol1 = crypto?.data?.coins[0]?.symbol;
-  const coinPrice1 = crypto?.data?.coins[0]?.price;
-  const cryptoCap1 = crypto?.data?.coins[0]?.marketCap;
-  const volumeDay1 = crypto?.data?.coins[0]["24hVolume"];
 
-  return (
-    <div>
-      <div className="p-5">
-        <h1>{error}</h1>
-        <h1>{coinName1}</h1>
-        <h1>{coinSymbol1}</h1>
-        <h1>${Math.floor(coinPrice1).toLocaleString()}</h1>
-        <h1>${Math.floor(cryptoCap1).toLocaleString()}</h1>
-        <h1>Volume {Math.floor(volumeDay1).toLocaleString()}</h1>
-      </div>
-    </div>
-  );
+  return { crypto, error };
 };
 
 export default CryptoApi;
