@@ -1,16 +1,32 @@
+import { useState, useEffect } from 'react';
 import "./App.css";
 import CryptoApi from "./CryptoApi";
 
 const CryptoApp = () => {
-  const { crypto, error } = CryptoApi();
+  const [crypto, setCrypto] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchCryptoData = async () => {
+      const { crypto, error } = await CryptoApi();
+      setCrypto(crypto);
+      setError(error);
+    };
+
+    fetchCryptoData(); // Fetch data immediately
+
+    const intervalId = setInterval(fetchCryptoData, 60000); // Fetch data every 60 seconds
+
+    return () => clearInterval(intervalId); // Clean up interval on unmount
+  }, []);
   
-console.log(crypto);
+
   return (
-    <div>
-      <h1 className="text-center text-5xl pb-3 pt-8 font-semibold">Track The Latest Crypto Prices <br/> Here At</h1>
-      <h1 className="text-center text-5xl pb-10 font-semibold"> Crypto Suuq</h1>
-      <h1 className="text-center text-3xl pb-2 font-semibold">Market Cap </h1>
-      <h1 className="text-center text-3xl pb-10 font-semibold">${Math.floor(crypto.data.stats.totalMarketCap).toLocaleString()}</h1>
+    <div className="animate-fadeIn">
+      <h1 className="text-center text-5xl pb-3 pt-8 font-bold"> The Crypto Suuq</h1>
+      <h1 className="text-center text-5xl pb-10 font-semibold">Track The Latest Prices</h1>
+      <h1 className="text-center text-3xl pb-2 font-semibold">Total Market Cap </h1>
+      <h1 className="text-center text-3xl pb-10 font-semibold">${Math.floor(crypto?.data?.stats?.totalMarketCap).toLocaleString()}</h1>
       
       <div className="flex -space-x-4 justify-center">
         <img className="w-auto h-12 object-cover animate-bounce" src="https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg" alt="Bitcoin" />
@@ -20,9 +36,7 @@ console.log(crypto);
         <img className="w-auto h-12 object-cover animate-bounce" src="https://cdn.coinranking.com/H1arXIuOZ/doge.svg" alt="Dogecoin" />
       </div>
 
-
-
-      {error && <h1>{error}</h1>}
+    {error && <h1>{error}</h1>}
       {crypto && (
         <div className="p-5">
           <div className="overflow-x-auto">
@@ -42,7 +56,7 @@ console.log(crypto);
                     
                     <td className="border px-4 py-2 text-center text-xs sm:text-2xl flex flex-col items-center justify-center"><img src={coin.iconUrl} alt={coin.name} style={{width: '20px', height: '20px'}}/>{coin.symbol}</td>
                     <td className="border px-4 py-2 text-center text-xs sm:text-2xl">{coin.name}</td>
-                    <td className="border px-4 py-2 text-center text-xs sm:text-2xl">${parseFloat(coin.price).toFixed(2).toLocaleString()}</td>
+                    <td className="border px-4 py-2 text-center text-xs sm:text-2xl">${parseFloat(coin.price).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
                     <td className="border px-4 py-2 text-center text-xs sm:text-2xl">${Math.floor(coin.marketCap).toLocaleString()}</td>
                     <td className="border px-4 py-2 text-center text-xs sm:text-2xl">${Math.floor(coin["24hVolume"]).toLocaleString()}</td>
                   </tr>

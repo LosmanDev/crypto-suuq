@@ -1,28 +1,16 @@
-import { useState, useEffect } from "react";
+const CryptoApi = async () => {
+  try {
+    const response = await fetch("https://api.coinranking.com/v2/coins");
 
-const CryptoApi = () => {
-  const [crypto, setCrypto] = useState("");
-  const [error, setError] = useState(null);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await fetch("https://api.coinranking.com/v2/coins");
-
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        const data = await response.json();
-        setCrypto(data);
-      } catch (error) {
-        setError("An error occurred while fetching data");
-      }
-    };
-    getData();
-  }, []);
-
-  return { crypto, error };
+    const data = await response.json();
+    return { crypto: data, error: null };
+  } catch (error) {
+    return { crypto: null, error: "An error occurred while fetching data" };
+  }
 };
 
 export default CryptoApi;
