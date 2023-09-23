@@ -93,8 +93,10 @@ const CryptoApp = () => {
                         </div>
                       </div>
                       <div>
-                        <div className="font-bold">{coin.symbol}</div>
-                        <div className="text-sm font-normal opacity-50">
+                        <div className="font-bold animate-slideIn">
+                          {coin.symbol}
+                        </div>
+                        <div className="text-sm font-normal opacity-50 animate-slideIn">
                           {coin.name}
                         </div>
                       </div>
