@@ -28,6 +28,31 @@ export default {
       },
     },
   },
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          primary: "rgb(30,35,41)",
+
+          secondary: "rgb(241,187,21)",
+
+          accent: "rgb(255,255,255)",
+
+          neutral: "rgb(45,46,50)",
+
+          "base-100": "rgb(255,255,255) ",
+
+          info: "rgba(0, 0, 0, 0)",
+
+          success: "#019e01",
+
+          warning: "#fccc59",
+
+          error: "#ff0000",
+        },
+      },
+    ],
+  },
   // eslint-disable-next-line no-undef
-  // plugins: [require("daisyui")],
+  plugins: [require("daisyui")],
 };
