@@ -32,12 +32,11 @@ const CryptoApp = () => {
   return (
     <div className="animate-fadeIn">
       <div className="flex flex-col items-center justify-center shadow-xl shadow-secondary rounded">
-        <h1 className="text-center sm:text-5xl text-3xl pt-8 font-bold">
-          {" "}
+        <h1 className="text-center sm:text-5xl text-3xl pt-20 pb-5 font-bold">
           The Crypto <span className="text-secondary">Suuq</span>
         </h1>
         <h1 className="text-center sm:text-3xl text-2xl pb-5 font-semibold">
-          Track The Latest <span className="text-secondary">Prices</span>
+          Track The <span className="text-secondary">Latest</span> Prices
         </h1>
         <h1 className="text-center sm:text-2xl text-lg pb-2 font-semibold">
           Total <span className="text-secondary">Market</span> Cap
@@ -65,9 +64,7 @@ const CryptoApp = () => {
                 <th className="sm:text-2xl text-lg font-medium text-primary px-4">
                   Price
                 </th>
-                <th className="sm:text-2xl text-lg font-medium text-primary px-4">
-                  24h
-                </th>
+
                 <th className="sm:text-2xl text-lg font-medium text-primary px-4">
                   Market Cap
                 </th>
@@ -109,18 +106,19 @@ const CryptoApp = () => {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
                     })}
+                    <div
+                      className={`px-4 py-2 text-xs sm:text-sm animate-slideIn ${
+                        coin.change.toString().includes("-")
+                          ? "text-error"
+                          : "text-success"
+                      }`}
+                    >
+                      {coin.change.toString().includes("-")
+                        ? coin.change
+                        : `+${coin.change}`}
+                    </div>
                   </td>
-                  <td
-                    className={`px-4 py-2 text-xs sm:text-2xl animate-slideIn ${
-                      coin.change.toString().includes("-")
-                        ? "text-error"
-                        : "text-success"
-                    }`}
-                  >
-                    {coin.change.toString().includes("-")
-                      ? coin.change
-                      : `+${coin.change}`}
-                  </td>
+
                   <td className="px-4 py-2 text-xs sm:text-2xl animate-slideIn">
                     ${Math.floor(coin.marketCap).toLocaleString()}
                   </td>
