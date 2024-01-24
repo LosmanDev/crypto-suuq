@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import "./App.css";
-import Lottie from "lottie-react";
-import animationData from "../src/assets/animation_lmwmr9lq.json";
-import CryptoApi from "./CryptoApi";
+import { useState, useEffect } from 'react';
+import './App.css';
+import Lottie from 'lottie-react';
+import animationData from '../src/assets/animation_lmwmr9lq.json';
+import CryptoApi from './CryptoApi';
 
 const CryptoApp = () => {
   const defaultOptions = {
@@ -10,7 +10,7 @@ const CryptoApp = () => {
     autoplay: true,
     animationData: animationData,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
+      preserveAspectRatio: 'xMidYMid slice',
     },
   };
   const [crypto, setCrypto] = useState(null);
@@ -28,6 +28,8 @@ const CryptoApp = () => {
 
     return () => clearInterval(intervalId); // Clean up interval on unmount
   }, []);
+
+  console.log(crypto.data.coins);
 
   return (
     <div className="animate-fadeIn">
@@ -76,7 +78,7 @@ const CryptoApp = () => {
             <tbody>
               {/* row 1 */}
               {crypto.data.coins.map((coin, index) => (
-                <tr key={index} className={index % 2 == 0 ? "#03001C" : ""}>
+                <tr key={index} className={index % 2 == 0 ? '#03001C' : ''}>
                   <td className=" py-2 text-xs sm:text-2xl flex flex-col ">
                     <div className="flex items-center space-x-3">
                       <div className="avatar">
@@ -84,7 +86,7 @@ const CryptoApp = () => {
                           <img
                             src={coin.iconUrl}
                             alt={coin.name}
-                            style={{ width: "30px", height: "30px" }}
+                            style={{ width: '30px', height: '30px' }}
                             className="animate-slideIn"
                           />
                         </div>
@@ -102,18 +104,18 @@ const CryptoApp = () => {
 
                   <td className="px-4 py-2 text-xs sm:text-2xl animate-slideIn">
                     $
-                    {parseFloat(coin.price).toLocaleString("en-US", {
+                    {parseFloat(coin.price).toLocaleString('en-US', {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
                     })}
                     <div
                       className={`px-4 py-2 text-xs sm:text-sm animate-slideIn ${
-                        coin.change.toString().includes("-")
-                          ? "text-error"
-                          : "text-success"
+                        coin.change.toString().includes('-')
+                          ? 'text-error'
+                          : 'text-success'
                       }`}
                     >
-                      {coin.change.toString().includes("-")
+                      {coin.change.toString().includes('-')
                         ? coin.change
                         : `+${coin.change}`}
                     </div>
@@ -123,7 +125,7 @@ const CryptoApp = () => {
                     ${Math.floor(coin.marketCap).toLocaleString()}
                   </td>
                   <td className="px-4 py-2 text-xs sm:text-2xl animate-slideIn">
-                    ${Math.floor(coin["24hVolume"]).toLocaleString()}
+                    ${Math.floor(coin['24hVolume']).toLocaleString()}
                   </td>
                 </tr>
               ))}
