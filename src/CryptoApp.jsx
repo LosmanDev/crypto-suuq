@@ -29,8 +29,6 @@ const CryptoApp = () => {
     return () => clearInterval(intervalId); // Clean up interval on unmount
   }, []);
 
-  console.log(crypto.data.coins);
-
   return (
     <div className="animate-fadeIn">
       <div className="flex flex-col items-center justify-center shadow-xl shadow-secondary rounded">
